@@ -44,9 +44,5 @@ node default {
         docroot_owner => 'www-data',
         docroot_group => 'www-data',
     }
-
-    file { '/var/www/test.cause13.local/index.php':
-        ensure => 'absent',
-    }
 }
 
