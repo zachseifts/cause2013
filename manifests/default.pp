@@ -46,11 +46,7 @@ node default {
     }
 
     file { '/var/www/test.cause13.local/index.php':
-        ensure => 'present',
-        content => '<?php phpinfo(); ?>',
-        mode => 0664,
-        owner => 'www-data',
-        group => 'www-data',
+        ensure => 'absent',
     }
 }
 
