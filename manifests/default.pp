@@ -44,5 +44,19 @@ node default {
         docroot_owner => 'www-data',
         docroot_group => 'www-data',
     }
+
+    mysql::db { 'drupal':
+        user => 'drupal',
+        password => 'drupal',
+        host => 'localhost',
+        grant => ['all']
+    }
+
+    cron { 'drupal cron':
+        command => '/usr/bin/drush -r test.cause13.local cron >/dev/null',
+        user => www-data,
+        minute => 0,
+        require => [Exec['install drush'], Host['test.cause13.local']]
+    }
 }
 
