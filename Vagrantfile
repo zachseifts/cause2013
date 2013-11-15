@@ -13,4 +13,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.provider :virtualbox do |vb|
     vb.customize ["modifyvm", :id, "--memory", "1024"]
   end
+
+  config.vm.provision :puppet do |puppet|
+    puppet.module_path = "modules"
+    puppet.manifests_path = "manifests"
+    puppet.manifest_file  = "default.pp"
+  end
 end
