@@ -7,4 +7,5 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.hostname = "cause2013"
   config.vm.box = "precise64"
   config.vm.box_url = "http://things.appstate.edu/vagrant/precise64.box"
+  config.vm.provision :shell, :inline => "/usr/bin/apt-get update"
 end
