@@ -9,4 +9,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.box_url = "http://things.appstate.edu/vagrant/precise64.box"
   config.vm.provision :shell, :inline => "/usr/bin/apt-get update"
   config.vm.network :forwarded_port, guest: 80, host: 8085
+
+  config.vm.provider :virtualbox do |vb|
+    vb.customize ["modifyvm", :id, "--memory", "1024"]
+  end
 end
