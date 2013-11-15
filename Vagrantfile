@@ -18,5 +18,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     puppet.module_path = "modules"
     puppet.manifests_path = "manifests"
     puppet.manifest_file  = "default.pp"
+    puppet.facter = {
+      'fqdn' => 'test.cause13.local',
+    }
   end
 end

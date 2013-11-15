@@ -19,7 +19,7 @@ node default {
         creates => '/usr/bin/drush'
     }
 
-    host { 'test.cause13.local':
+    host { $fqdn:
         ensure => 'present',
         ip => '127.0.0.1'
     }
@@ -37,10 +37,10 @@ node default {
         root_password => 'root',
     }
 
-    apache::vhost { 'test.cause13.local':
+    apache::vhost { $fqdn:
         priority => 10,
         port => 80,
-        docroot => '/var/www/test.cause13.local',
+        docroot => "/var/www/${fqdn}",
         docroot_owner => 'www-data',
         docroot_group => 'www-data',
     }
@@ -53,10 +53,10 @@ node default {
     }
 
     cron { 'drupal cron':
-        command => '/usr/bin/drush -r test.cause13.local cron >/dev/null',
+        command => "/usr/bin/drush -r ${fqdn} cron >/dev/null",
         user => www-data,
         minute => 0,
-        require => [Exec['install drush'], Host['test.cause13.local']]
+        require => [Exec['install drush'], Host[$fqdn]]
     }
 }
 
